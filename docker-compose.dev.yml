@@ -1,0 +1,53 @@
+version: "3"
+services:
+  db:
+    container_name: database
+    image: mongo
+    expose:
+      - 27017
+    volumes:
+      - ./Database/data/:/data/db
+    restart: always
+
+  frontend:
+    container_name: frontend
+    depends_on:
+      - backend
+    build: Frontend/.
+    expose:
+      - 3000
+    command: npm start
+    env_file:
+      - ./Frontend/frontend.env
+    volumes:
+      - ./Frontend:/usr/frontend
+    restart: always
+
+  backend:
+    container_name: backend
+    depends_on:
+      - db
+    build: Backend/.
+    expose:
+      - 80
+    env_file:
+      - ./Backend/backend.env
+    volumes:
+      - ./Backend:/usr/backend
+    restart: always
+
+  nginx:
+    container_name: nginx
+    depends_on:
+      - db
+      - frontend
+      - backend
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./Nginx/logs/:/var/log/nginx/
+      - ./Nginx/http.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt/:/etc/letsencrypt/
+    restart: always

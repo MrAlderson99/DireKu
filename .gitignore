@@ -1,0 +1,16 @@
+# Environment Variable Files
+**/*.env
+
+# Pytest Files
+**/.coverage
+**/.pytest_cache
+
+# Python Files
+**/__pycache__/
+
+# VSCode Files
+**/.vscode
+
+# Website Specifics
+**/Database
+**/Nginx/logs
