@@ -1,57 +1,43 @@
-# Website Template
+# DireKu
 
-This Website for { Company Name } and is being developed by MCduBois Web Services, LLC.
+This Web App is to control DirecTV STBs (Set Top Boxes) and Roku devices. This Web App is being developed by MCduBois Web Services, LLC.
 
 ## Table of Contents
 
-1. [Installation](#Installation)
-2. [Configuration](#Configuration)
-3. [Service Control](#Service-Control)
+1. [About](#About)
+2. [Usage](#Usage)
+3. [Compatibility](#Compatibility)
+4. [Contributing](#Contributing)
 
-## Installation
+## About
 
-- Clone the repository
-  - > git clone https://github.com/MichaelCduBois/Website-Template
+The goal of this project is to reduce the need of needing multiple controllers when using a Roku device with DirecTV.
+DireKu will communicate with the devices using REST API commands over the user's home network.
 
-## Configuration
+## Usage
 
-- Update domain names in Nginx config files
-  - [https.conf](Nginx/https.conf)
-  - [http.conf](Nginx/http.conf)
+To be updated when confirmed. Expected usage:
 
-- Install Certbot
-  - > apt install certbot
+### Publicly Hosted
 
-- Allow firewall connections on port 80
-  - > ufw allow 80
+1. Visit the project DireKu website.
+2. Add the WebApp to your device homescreen.
+3. Load the WebApp and navigate to settings.
+4. Update and save the local IP Address for the DirecTV and Roku devices.
 
-- Create certificate for each domain
-  - > certbot certonly --standalone -d {domain}
+### Self Hosted
 
-- Edit crontab configuring for daily expiration checs
-  - > crontab -e
-  - > @daily certbot renew --pre-hook "docker-compose -f {path/to/docker-compose.yml} down" -- post-hook "docker-compose -f {path/to/docker-compose.yml} up -d"
+1. Clone the repository.
+2. Configure the containers.
+3. Visit the IP for the DireKu container.
+4. Add the WebApp to your device homescreen.
+5. Load the WebApp and navigate to settings.
+6. Update and save the local IP Address for the DirecTV and Roku devices.
 
-## Service Control
+## Compatibility
 
-### Development
+A list of compatible devices is located [here](/Compatibility.md) along with the status.
 
-> docker-compose -f docker-compose.dev.yml build
-> docker-compose -f docker-compsoe.dev.yml up -d
+## Contributing
 
-### Production
-
-> docker-compose build
-> docker-compose up -d
-
-### Shutdown all containers
-
-> docker-compose down
-
-### Start specific container
-
-> docker-compose start {CONTAINER NAME}
-
-### Stop specific container
-
-> docker-compose stop {CONTAINER NAME}
+To be updated.
